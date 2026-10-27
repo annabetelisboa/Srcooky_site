@@ -1,5 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Produto
+
 
 def inicio(request):
-    return HttpResponse("Bem-vindo à nossa confeitaria!")
+    produtos = Produto.objects.filter(disponivel=True)
+
+    return render(
+        request,
+        'produtos/inicio.html',
+        {'produtos': produtos}
+    )

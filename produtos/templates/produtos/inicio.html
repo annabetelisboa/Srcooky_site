@@ -1,0 +1,106 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="banner-texto">
+        <span class="etiqueta">DOCES ARTESANAIS</span>
+
+        <h1>Pequenos doces,<br>grandes momentos.</h1>
+
+        <div class="onda">〜〜〜〜〜</div>
+
+        <p>
+            Doces preparados com carinho,
+            ingredientes selecionados e muito sabor.
+            Porque os melhores momentos merecem
+            um toque especial.
+        </p>
+
+        <a href="#doces" class="botao">CONHEÇA NOSSOS DOCES →</a>
+    </div>
+
+    <div class="banner-imagem">
+        <img
+            src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1000&q=85"
+            alt="Brownies de chocolate"
+        >
+        <span class="selo">FEITO<br>COM AMOR</span>
+    </div>
+</section>
+
+<section class="diferenciais">
+    <div>
+        <span>♡</span>
+        <p>FEITOS COM CARINHO</p>
+    </div>
+
+    <div>
+        <span>✳</span>
+        <p>INGREDIENTES SELECIONADOS</p>
+    </div>
+
+    <div>
+        <span>✦</span>
+        <p>PRODUÇÃO ARTESANAL</p>
+    </div>
+</section>
+
+<section class="vitrine" id="doces">
+
+    <div class="vitrine-introducao">
+        <span class="etiqueta">NOSSA COLEÇÃO</span>
+
+        <h2>Um doce<br>para cada momento.</h2>
+
+        <p>
+            Descubra seus novos favoritos
+            e deixe o dia mais gostoso.
+        </p>
+
+        <a href="#doces" class="link-colecao">
+            EXPLORE OS DOCES ↗
+        </a>
+    </div>
+
+    {% for produto in produtos %}
+
+        <article class="produto">
+
+            {% if produto.imagem %}
+                <img
+                    src="{{ produto.imagem }}"
+                    alt="{{ produto.nome }}"
+                >
+            {% else %}
+                <div class="imagem-vazia">
+                    Foto em breve
+                </div>
+            {% endif %}
+
+            <div class="produto-info">
+                <div>
+                    <h3>{{ produto.nome }}</h3>
+                    <p>{{ produto.descricao }}</p>
+                    <strong>R$ {{ produto.preco }}</strong>
+                </div>
+
+                <button
+                    class="botao-adicionar"
+                    type="button"
+                    aria-label="Adicionar {{ produto.nome }} ao carrinho"
+                >+</button>
+            </div>
+
+        </article>
+
+    {% empty %}
+
+        <p>Nossos doces estarão disponíveis em breve!</p>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}
